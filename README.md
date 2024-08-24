@@ -6,7 +6,7 @@ Clone the repository, install dependencies, and run the development server:
 
 ```bash
 git clone git@github.com:kosuke-eth/Polaris_wallet.git
-cd Polaris_wallet
+cd Polaris-wallet
 pnpm install
 pnpm run dev
 ```
