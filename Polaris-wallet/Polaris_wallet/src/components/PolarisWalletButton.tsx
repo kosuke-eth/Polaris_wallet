@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useConnect, useAccount, useDisconnect } from "wagmi";
 import { Button } from "./Button";
 
-export function KyuzanWalletButton() {
+export function PolarisWalletButton() {
   const { connectors, connect } = useConnect();
   const { status, address } = useAccount();
   const { disconnect } = useDisconnect();
@@ -23,8 +23,8 @@ export function KyuzanWalletButton() {
     <>
       <Button onClick={createOrConnectCoinbaseSmartWallet}>
         {isConnected
-          ? "1. Wallet Connected"
-          : "1. Create Wallet / Connect Wallet"}
+          ? "Wallet Connected"
+          : "Create Wallet / Connect Wallet"}
       </Button>
       {status === "connected" && (
         <>
@@ -41,3 +41,4 @@ export function KyuzanWalletButton() {
     </>
   );
 }
+
