@@ -1,68 +1,48 @@
-import React from 'react';
+import React from "react";
+import clsx from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isActive?: boolean;
-  variant?: 'filled' | 'outlined';
+  variant?: "primary" | "secondary" | "danger";
+  size?: "small" | "medium" | "large";
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   isActive = true,
-  variant = 'filled',
+  variant = "primary",
+  size = "medium",
+  className,
   ...props
 }) => {
-  const baseClasses = `
-    flex 
-    items-center 
-    justify-center 
-    px-6 
-    py-3 
-    rounded-full 
-    font-medium 
-    text-sm 
-    tracking-wide
-    uppercase
-    transition-all 
-    duration-300 
-    ease-in-out
-    transform
-    shadow-sm
-    hover:shadow-md
-    focus:outline-none 
-    focus:ring-2 
-    focus:ring-offset-2 
-    focus:ring-orange-200
-  `;
+  const baseClasses =
+    "flex items-center justify-center rounded-md font-bold cursor-pointer transition duration-300 transform ease-in-out";
 
-  const variantClasses = variant === 'filled'
-    ? `
-      bg-orange-100 
-      text-orange-800
-      hover:bg-orange-200
-      active:bg-orange-300
-    `
-    : `
-      bg-transparent
-      text-orange-500
-      border-2 
-      border-orange-300
-      hover:bg-orange-50
-      active:bg-orange-100
-    `;
+  const variantClasses = {
+    primary: "bg-green-600 text-white hover:bg-green-700",
+    secondary: "bg-blue-500 text-white hover:bg-blue-600",
+    danger: "bg-red-500 text-white hover:bg-red-600",
+  };
 
-  const stateClasses = isActive
-    ? `
-      hover:-translate-y-0.5
-      active:translate-y-0.5
-    `
-    : `
-      opacity-50 
-      cursor-not-allowed
-    `;
+  const sizeClasses = {
+    small: "px-2 py-1 text-sm",
+    medium: "px-4 py-2 text-base",
+    large: "px-6 py-3 text-lg",
+  };
+
+  const activeClasses = isActive
+    ? "hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0.5 active:scale-95"
+    : "cursor-not-allowed bg-gray-300";
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses} ${stateClasses}`}
+      className={clsx(
+        baseClasses,
+        variantClasses[variant],
+        sizeClasses[size],
+        activeClasses,
+        className
+      )}
       disabled={!isActive}
       {...props}
     >
